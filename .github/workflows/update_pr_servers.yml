@@ -2,7 +2,7 @@ name: Update PR server last-seen list
 
 on:
   schedule:
-    - cron: "10 0 * * *"
+    - cron: "00 21 * * *"
       timezone: "Europe/Warsaw"
   workflow_dispatch:
 
