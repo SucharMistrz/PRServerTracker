@@ -17,13 +17,20 @@ API_URL = "https://servers.realitymod.com/api/ServerInfo"
 OUTPUT_FILE = Path("data/servers_last_seen.tsv")
 TIMEZONE = os.environ.get("LAST_SEEN_TIMEZONE", "Europe/Warsaw")
 
-FIELDNAMES = ["server_id", "server_name", "last_seen"]
+FIELDNAMES = [
+    "server_id",
+    "server_name",
+    "last_seen",
+    "bf2_d_dl",
+    "bf2_sponsortext",
+    "bf2_communitylogo_url",
+]
 
 
 def clean_cell(value: object) -> str:
     """
     Keep the TSV file safe and readable.
-    Server names can contain odd spacing, so remove tabs/newlines.
+    Server names and sponsor text can contain odd spacing, tabs, or newlines.
     """
     if value is None:
         return ""
@@ -94,6 +101,9 @@ def read_existing_records(path: Path) -> dict[str, dict[str, str]]:
                 "server_id": server_id,
                 "server_name": clean_cell(row.get("server_name")),
                 "last_seen": clean_cell(row.get("last_seen")),
+                "bf2_d_dl": clean_cell(row.get("bf2_d_dl")),
+                "bf2_sponsortext": clean_cell(row.get("bf2_sponsortext")),
+                "bf2_communitylogo_url": clean_cell(row.get("bf2_communitylogo_url")),
             }
 
     return records
@@ -125,6 +135,9 @@ def update_records(
             "server_id": server_id,
             "server_name": server_name,
             "last_seen": seen_date,
+            "bf2_d_dl": clean_cell(properties.get("bf2_d_dl")),
+            "bf2_sponsortext": clean_cell(properties.get("bf2_sponsortext")),
+            "bf2_communitylogo_url": clean_cell(properties.get("bf2_communitylogo_url")),
         }
 
     return records
