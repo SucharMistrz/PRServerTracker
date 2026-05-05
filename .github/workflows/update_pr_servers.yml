@@ -2,8 +2,8 @@ name: Update PR server last-seen list
 
 on:
   schedule:
-    - cron: "00 21 * * *"
-      timezone: "Europe/Warsaw"
+    - cron: "00 18 * * *"
+      timezone: "Europe/London"
   workflow_dispatch:
 
 permissions:
