@@ -15,7 +15,7 @@ from zoneinfo import ZoneInfo
 
 API_URL = "https://servers.realitymod.com/api/ServerInfo"
 OUTPUT_FILE = Path("data/servers_last_seen.tsv")
-TIMEZONE = os.environ.get("LAST_SEEN_TIMEZONE", "Europe/Warsaw")
+TIMEZONE = os.environ.get("LAST_SEEN_TIMEZONE", "Europe/London")
 
 FIELDNAMES = [
     "server_id",
